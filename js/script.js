@@ -54,6 +54,10 @@ new Vue ({
             if (this.currentImageIndex === index){
                 return 'active'
             }
+        },
+
+        setImgOnClick(index){
+            this.currentImageIndex = index
         }
     }
 })

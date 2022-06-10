@@ -29,7 +29,7 @@
                 <div class="thumbs">
                     <div class="prev" @click="setPreviousImageIndex(images)"></div>
                     <div class="next" @click="setNextImageIndex(images)"></div>
-                    <div v-for="(image, i) in images" class="thumb" :class="setActiveThumb(i)">
+                    <div v-for="(image, i) in images" class="thumb" :class="setActiveThumb(i)" @click="setImgOnClick(i)">
                         <img :src="image.image" :alt="image.title" />
                     </div>
                 </div>
