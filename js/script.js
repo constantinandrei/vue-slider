@@ -26,4 +26,34 @@ const slides = [
     }
 ];
 
-console.log(slides);
+new Vue ({
+    el: '#app',
+    data: {
+        images: slides,
+        currentImageIndex: 0
+    },
+
+    methods: {
+        setNextImageIndex(imagesArray){
+            if (this.currentImageIndex === imagesArray.length - 1){
+                this.currentImageIndex = 0
+            } else {
+                this.currentImageIndex++
+            }
+        },
+
+        setPreviousImageIndex(imagesArray){
+            if (this.currentImageIndex === 0){
+                this.currentImageIndex = imagesArray.length - 1
+            } else {
+                this.currentImageIndex--
+            }
+        },
+
+        setActiveThumb(index){
+            if (this.currentImageIndex === index){
+                return 'active'
+            }
+        }
+    }
+})
