@@ -14,7 +14,7 @@
     <div id="app">
 
         <div class="container" >
-            <div class="slider-wrapper" tabindex="0">
+            <div class="slider-wrapper" tabindex="0"  @mouseover="showButtons(); removePlay()" @mouseleave="hideButtons(); addPlay()">
 
                 <div class="item">
                     <img :src="images[currentImageIndex].image" :alt="images[currentImageIndex].title" />
@@ -27,8 +27,8 @@
                 </div>
 
                 <div class="thumbs">
-                    <div class="prev" @click="setPreviousImageIndex(images)"></div>
-                    <div class="next" @click="setNextImageIndex(images)"></div>
+                    <div class="prev" v-show="mouseOver" @click="setPreviousImageIndex(images)"></div>
+                    <div class="next" v-show="mouseOver" @click="setNextImageIndex(images)"></div>
                     <div v-for="(image, i) in images" class="thumb" :class="setActiveThumb(i)" @click="setImgOnClick(i)">
                         <img :src="image.image" :alt="image.title" />
                     </div>

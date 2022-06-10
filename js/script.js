@@ -30,7 +30,10 @@ new Vue ({
     el: '#app',
     data: {
         images: slides,
-        currentImageIndex: 0
+        currentImageIndex: 0,
+        mouseOver: false,
+        intervalSave: null,
+        onLoadInterval: null
     },
 
     methods: {
@@ -58,6 +61,40 @@ new Vue ({
 
         setImgOnClick(index){
             this.currentImageIndex = index
+        },
+
+        hideButtons(){
+            setTimeout(()=>{this.mouseOver = false}, 500)
+        },
+
+        showButtons(){
+            this.mouseOver = true
+        },
+
+        addPlay(){
+            this.intervalSave = setInterval(() => {
+                if (this.currentImageIndex === this.images.length - 1){
+                    this.currentImageIndex = 0
+                } else {
+                    this.currentImageIndex++
+                }
+            }, 3000)
+        },
+
+        removePlay(){
+            clearInterval(this.intervalSave)
+            clearInterval(this.onLoadInterval)
         }
+    },
+
+    mounted(){
+        this.onLoadInterval = setInterval(() => {
+            if (this.currentImageIndex === this.images.length - 1){
+                this.currentImageIndex = 0
+            } else {
+                this.currentImageIndex++
+            }
+        }, 3000)
     }
+    
 })
